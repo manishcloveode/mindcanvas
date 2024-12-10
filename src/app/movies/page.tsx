@@ -1,20 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+
 import { Star, BookmarkIcon, MoreHorizontal } from 'lucide-react'
-import {
-    Pagination,
-    PaginationContent,
-    PaginationEllipsis,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious,
-} from "@/components/ui/pagination"
+import Pagination from "@/component/Pagination";
 
 import Link from 'next/link'
 import Image from 'next/image'
+
 export default function Movies() {
 
     const [movies, setMovies] = useState<any[]>([]);
@@ -23,32 +16,18 @@ export default function Movies() {
 
     const totalPages = Math.ceil(movies.length / 10);
 
-    const handlePageClick = (page: number) => {
+    const handlePageChange = (page: number) => {
         setCurrentPage(page);
-
         setSclicedMovies(movies.slice((page - 1) * 10, page * 10));
-    }
-
-
-    const checkPageIsActive = (page: number): boolean => {
-        return page === currentPage;
-    }
-
+    };
 
     useEffect(() => {
         const fetchMovies = async () => {
             try {
                 const response = await fetch("https://freetestapi.com/api/v1/movies");
                 const result = await response.json();
-
-
-                console.log(response);
-
-
                 setMovies(result);
                 setSclicedMovies(result.slice(0, 10));
-
-
             } catch (error) {
                 console.error("Error fetching movies:", error);
             }
@@ -58,14 +37,10 @@ export default function Movies() {
     }, []);
 
 
-
-
     return (
-
         <>
             <section className="p-8">
                 <div className="container mx-auto px-4 md:px-6 py-4 flex gap-8">
-
                     <main className="flex-1 ">
                         <div className="sticky py-4 bg-white top-0 flex gap-6 border-b mb-8">
                             <Link href="/blog"
@@ -86,9 +61,8 @@ export default function Movies() {
                             </Link>
                         </div>
                         <div className="space-y-8">
-
                             {slicedMovies.slice(0, 10).map((movie) => (
-                                <article className="flex gap-6">
+                                <article className="flex gap-6" key={movie.id} >
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2 mb-2">
                                             <span className="bg-gray-100 p-1 rounded">
@@ -138,34 +112,11 @@ export default function Movies() {
 
                             ))}
                         </div>
-                        <Pagination>
-                            <PaginationContent>
-                                {currentPage > 1 && (
-                                    <PaginationItem>
-                                        <PaginationPrevious onClick={() => handlePageClick(currentPage - 1)} />
-                                    </PaginationItem>
-                                )}
-                                {Array.from({ length: totalPages }, (_, index) => {
-                                    const page = index + 1;
-                                    return (
-                                        <PaginationItem key={page}>
-                                            <PaginationLink
-                                                onClick={() => handlePageClick(page)}
-                                                isActive={checkPageIsActive(page)}
-                                            >
-                                                {page}
-                                            </PaginationLink>
-                                        </PaginationItem>
-                                    );
-                                })}
-                                {currentPage < totalPages && (
-                                    <PaginationItem>
-                                        <PaginationNext onClick={() => handlePageClick(currentPage + 1)} />
-                                    </PaginationItem>
-                                )}
-                            </PaginationContent>
-                        </Pagination>
-
+                        <Pagination
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            onPageChange={handlePageChange}
+                        />
                     </main>
 
 
@@ -229,3 +180,7 @@ export default function Movies() {
         </>
     );
 }
+function setSlicedPokemons(arg0: any) {
+    throw new Error("Function not implemented.");
+}
+
