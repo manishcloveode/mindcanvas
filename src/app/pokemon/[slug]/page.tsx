@@ -1,9 +1,9 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import Image from 'next/image'
+
 import Link from 'next/link'
-import { Bookmark, Play, Share2, MoreHorizontal, MessageSquare, PlayIcon as Clap, ArrowLeft } from 'lucide-react'
+import { Bookmark, Share2, MoreHorizontal, MessageSquare, PlayIcon as Clap, ArrowLeft } from 'lucide-react'
 
 export default function PokemonDetailPage({ params }: { params: Promise<{ slug: string }> }) {
     const [slug, setSlug] = useState<string | null>(null)

@@ -1,12 +1,12 @@
 'use client'
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+
 import { Star, ThumbsUp, BookmarkIcon, MoreHorizontal } from "lucide-react";
 import Pagination from "@/component/Pagination";
 import Link from "next/link";
 
 export default function Pokemon() {
-    const router = useRouter();
+
     const [Pokemons, setPokemons] = useState<any[]>([]);
     const [slicedPokemons, setSlicedPokemons] = useState<any[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -33,18 +33,25 @@ export default function Pokemon() {
 
     return (
         <section className="p-4 sm:p-6 md:p-8">
-            <div className="container mx-auto px-4 md:px-6 py-4">
+            <div className="container mx-auto  ">
                 <main className="w-full">
-                    <div className="bg-white py-4 sticky top-0 flex gap-4 sm:gap-6 border-b mb-8 overflow-x-auto">
-                        {["Blog", "Movies", "Pokemon"].map((item) => (
-                            <Link
-                                key={item}
-                                href={`/${item.toLowerCase()}`}
-                                className="text-sm whitespace-nowrap text-gray-500 pb-2 border-b border-black"
-                            >
-                                {item}
-                            </Link>
-                        ))}
+                    <div className="sticky py-4 bg-white top-0 flex gap-6 border-b mb-8">
+                        <Link href="/blog"
+                            className="text-sm text-gray-500 pb-2 border-b border-black"
+                        >
+                            Blog
+                        </Link>
+
+                        <Link href="/movies"
+                            className="text-sm text-gray-500 pb-2 border-b border-black"
+                        >
+                            movies
+                        </Link>
+                        <Link href="/pokemon"
+                            className="text-sm text-gray-500 pb-2 border-b border-black"
+                        >
+                            pokemon
+                        </Link>
                     </div>
                     {slicedPokemons.map((Pokemon) => (
                         <div className="space-y-8 my-8" key={Pokemon.id}>

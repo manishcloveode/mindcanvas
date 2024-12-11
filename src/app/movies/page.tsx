@@ -39,8 +39,8 @@ export default function Movies() {
 
     return (
         <>
-            <section className="p-8">
-                <div className="container mx-auto px-4 md:px-6 py-4 flex gap-8">
+            <section className="p-4 sm:p-6 md:p-8">
+                <div className="container mx-auto ">
                     <main className="flex-1 ">
                         <div className="sticky py-4 bg-white top-0 flex gap-6 border-b mb-8">
                             <Link href="/blog"
@@ -179,8 +179,5 @@ export default function Movies() {
             </section >
         </>
     );
-}
-function setSlicedPokemons(arg0: any) {
-    throw new Error("Function not implemented.");
 }
 

@@ -1,7 +1,8 @@
 import Link from "next/link"
-import { Bell, Search, PenSquare } from 'lucide-react'
+import { Bell, Search } from 'lucide-react'
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import Image from "next/image";
 
 export default function Navbar() {
     return (
@@ -30,9 +31,11 @@ export default function Navbar() {
                         size="icon"
                         className="rounded-full overflow-hidden p-0 h-8 w-8"
                     >
-                        <img
+                        <Image
                             src="/rabbit.jpg?height=32&width=32"
                             alt="Profile"
+                            height={32}
+                            width={32}
                             className="h-full w-full object-cover"
                         />
                     </Button>
